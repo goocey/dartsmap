@@ -1,0 +1,7 @@
+<h1> Listing oauth result</h1>
+
+<div>
+    <% if @oauth_result.present? %>
+    application <%= @oauth_result['application'] %>
+    result <%= @oauth_result['result'] %>
+</div>
