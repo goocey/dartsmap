@@ -32,6 +32,7 @@ class Dartsshop < ActiveRecord::Base
   end
   
   def gmaps4rails_address
+    "#{self.address}"
   end
 
   def Dartsshop.get_shop_latlon
