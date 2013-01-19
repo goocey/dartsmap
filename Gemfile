@@ -6,9 +6,14 @@ gem 'rails', '3.2.10'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
+gem 'gmaps4rails'
 gem 'oauth2'
 gem 'execjs'
 gem 'therubyracer'
+gem 'google-api-client'
+gem 'mechanize'
+gem 'pry-rails'
+gem 'geocoder'
 
 
 # Gems used only for assets and not required

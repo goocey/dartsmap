@@ -1,9 +1,11 @@
 Dartsmaps::Application.routes.draw do
+  resources :dartsshoptests
+  resources :shopinfo
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
-  resources :oauth2callback
-  resource :oauth_result
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
