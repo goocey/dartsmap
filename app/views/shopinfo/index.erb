@@ -1,22 +1,22 @@
-<html>
+<htm>
     <head>
         <%= stylesheet_link_tag 'gmaps4rails' %>
         <%= yield :scripts %>
     </head>
     <body>
+        <%= gmaps4rails(@json) %>
         <h1>既に取得したdarts shop一覧</h1>
 
         <table>
-        <% @dartsshop.each do |shop| %>
-        <tr>
-            <td><%= shop.shopname %></td>
-            <td><%= shop.address %></td>
-            <td><%= shop.latitude %></td>
-            <td><%= shop.longitude %></td>
-        </tr>
-        <% end %>
+            <% @dartsshop.each do |shop| %>
+            <tr>
+                <td><%= shop.shopname %></td>
+                <td><%= shop.address %></td>
+                <td><%= shop.latitude %></td>
+                <td><%= shop.longitude %></td>
+            </tr>
+            <% end %>
 
-        <%= gmaps4rails(@json) %>
-    </table>
+        </table>
     </body>
 </html>
