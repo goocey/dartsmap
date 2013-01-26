@@ -32,6 +32,7 @@ class Dartsshop < ActiveRecord::Base
   end
   
   def gmaps4rails_address
+    pry.binding
     "#{self.address}"
   end
 
