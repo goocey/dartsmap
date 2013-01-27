@@ -64,7 +64,7 @@ class Dartsshop < ActiveRecord::Base
       end
     end
   end
-  
+
   def gmaps4rails_address
     "#{self.address}"
   end
