@@ -72,8 +72,8 @@ class Dartsshop < ActiveRecord::Base
     target_record = Dartsshop.find(:all, :conditions => {:latitude => nil, :longitude => nil})
     target_record.each do | shop |
       geo = Geocoder.search(shop.address)
-    shop.update_attributes!(:latitude => geo[0].latitude)
-    shop.update_attributes!(:longitude => geo[0].longitude)
+      shop.update_attributes!(:latitude => geo[0].latitude)
+      shop.update_attributes!(:longitude => geo[0].longitude)
     end
   end
 end
