@@ -1,14 +1,14 @@
 class Dartsshop < ActiveRecord::Base
   acts_as_gmappable
-  attr_accessible :shopname, :address, :latitude, :longitude
+  attr_accessible :shopname, :address, :latitude, :longitude, :url
   #geocoded_by :address
-  after_validation :geocode
+  #after_validation :geocode
   @agent = Mechanize.new
 
   def search_addr(name)
     @latlons = Gecoder.search(name)
   end
-  
+
   #
   # ページ数分のURLを取得します
   #
@@ -25,7 +25,7 @@ class Dartsshop < ActiveRecord::Base
   end
 
   #
-  # 都道府県毎のURLを取得します
+  # 各ページごとの情報を保存します。(店舗名、URL、住所）
   #
   def Dartsshop.get_shop_data(urls)
     urls.each do |url|
@@ -50,7 +50,7 @@ class Dartsshop < ActiveRecord::Base
       end
 
       #名前とURL、住所を結合する
-      shopinfo = Hash.new
+      shopinfo = Array.new
       for i in 0..shopname.count-1 do
         shopinfo[i] = {:shopaddress => shopaddress[i], :shopurl => shopurl[i], :shopname => shopname[i]}
       end
@@ -59,11 +59,21 @@ class Dartsshop < ActiveRecord::Base
       # 各々保存していく
       #
       shopinfo.each do |line|
-        shop = self.new(:shopname => line[:shopname], :address => line[:shopaddress], :url => line[:shopurl])
-        shop.save
+        if (self.find(:all, :conditions => ["shopname = ?", line[:shopname]]).empty?)
+          shop = self.new(:shopname => line[:shopname], :address => line[:shopaddress], :url => line[:shopurl])
+          shop.save
+        end
       end
     end
   end
+
+  #
+  # 各メソッドを呼び出して情報を保存
+  #
+  def Dartsshop.get_shop_save
+    self.get_shop_data self.get_list_data
+  end
+
 
   def gmaps4rails_address
     "#{self.address}"
