@@ -48,6 +48,8 @@ class Dartsshop < ActiveRecord::Base
       hoge.search("/html/body/div/div/div[2]/div/div[5]").search("li[@class='address']").each do |line|
         shopaddress << line.inner_text.to_s
       end
+      puts shopaddress.count
+      sleep 10
 
       #名前とURL、住所を結合する
       shopinfo = Array.new
@@ -59,7 +61,7 @@ class Dartsshop < ActiveRecord::Base
       # 各々保存していく
       #
       shopinfo.each do |line|
-        if (self.find(:all, :conditions => ["shopname = ?", line[:shopname]]).empty?)
+        if (self.find(:all, :conditions => {:shopname => line[:shopname],:address => line[:shopaddress]}).empty?)
           shop = self.new(:shopname => line[:shopname], :address => line[:shopaddress], :url => line[:shopurl])
           shop.save
         end
