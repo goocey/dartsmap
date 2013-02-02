@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dartsmaps</title>
+  <%= javascript_include_tag "application" %>
+  <%= stylesheet_link_tag 'gmaps4rails' %>
+  <%= yield :scripts %>
+</head>
+<body>
+
+<%= yield %>
+
+</body>
+</html>
