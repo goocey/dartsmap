@@ -1,16 +1,8 @@
     <body>
-        <%= gmaps("markers" => {:data => @json, :options => {:do_clustering => true}},
+        <%= gmaps("markers" => {:data => @json,
+        	:options => {:do_clustering => true, :center_on_user => true}},
         "map_options" => {:provider => "google"}) %>
-        <h1>既に取得したdarts shop一覧</h1>
-        <table>
-            <% @dartsshop.each do |shop| %>
-            <tr>
-                <td><%= shop.shopname %></td>
-                <td><%= shop.address %></td>
-                <td><%= shop.latitude %></td>
-                <td><%= shop.longitude %></td>
-            </tr>
-            <% end %>
+        <h3>ダーツショップ数</h3>
+        <%= @dartsshop.count %>
 
-        </table>
     </body>
