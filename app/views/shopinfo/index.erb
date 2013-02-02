@@ -1,7 +1,7 @@
     <body>
-        <%= gmaps4rails(@json) %>
+        <%= gmaps("markers" => {:data => @json, :options => {:do_clustering => true}},
+        "map_options" => {:provider => "google"}) %>
         <h1>既に取得したdarts shop一覧</h1>
-
         <table>
             <% @dartsshop.each do |shop| %>
             <tr>
